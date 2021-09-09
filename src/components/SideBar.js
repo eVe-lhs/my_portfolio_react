@@ -42,7 +42,7 @@ const SideBar = ({ data, setTheme, colorTheme }) => {
 
       <aside
         href="/"
-        className={`lg:w-72  md:w-1/4 w-2/3 pt-5 px-4 fixed inset-y-0 mr-5  transform z-50 lg:h-screen overflow-y-scroll ${
+        className={`lg:w-72  md:w-1/4 w-2/3 pt-5 px-4 fixed inset-y-0 mr-5  transform z-50 lg:h-screen overflow-y-auto ${
           !open ? "-translate-x-full" : ""
         }   lg:translate-x-0  transition duration-200 ease-in-out bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-white`}
       >
@@ -75,16 +75,17 @@ const SideBar = ({ data, setTheme, colorTheme }) => {
             <p className="text-bold text-2xl font-head font-bold">
               Lin Htet Swe
             </p>
-            <p className="text-md font-head">Lin Htet Swe</p>
+            <p className="text-sm  font-light font-body">
+              A student and web-developer
+            </p>
           </div>
         </div>
 
-        <nav className="text-center font-thin space-y-0 mt-6">
+        <nav className="text-center font-light space-y-0 mt-6 font-body">
           <Link
             to="home"
             spy={true}
             smooth={true}
-            offset={50}
             duration={500}
             className="block py-2.5 px-4 rounded transition duration-200 "
           >
@@ -93,22 +94,9 @@ const SideBar = ({ data, setTheme, colorTheme }) => {
             </a>
           </Link>
           <Link
-            to="education"
-            spy={true}
-            smooth={true}
-            offset={50}
-            duration={500}
-            className="block py-2.5 px-4 rounded transition duration-200 "
-          >
-            <a href="/education" className="navigation">
-              Education
-            </a>
-          </Link>
-          <Link
             to="personal"
             spy={true}
             smooth={true}
-            offset={50}
             duration={500}
             className="block py-2.5 px-4 rounded transition duration-200 "
           >
@@ -117,10 +105,20 @@ const SideBar = ({ data, setTheme, colorTheme }) => {
             </a>
           </Link>
           <Link
+            to="education"
+            spy={true}
+            smooth={true}
+            duration={500}
+            className="block py-2.5 px-4 rounded transition duration-200 "
+          >
+            <a href="/education" className="navigation">
+              Education
+            </a>
+          </Link>
+          <Link
             to="skills"
             spy={true}
             smooth={true}
-            offset={50}
             duration={500}
             className="block py-2.5 px-4 rounded transition duration-200 "
           >
@@ -132,7 +130,6 @@ const SideBar = ({ data, setTheme, colorTheme }) => {
             to="projects"
             spy={true}
             smooth={true}
-            offset={50}
             duration={500}
             className="block py-2.5 px-4 rounded transition duration-200 "
           >
@@ -144,7 +141,6 @@ const SideBar = ({ data, setTheme, colorTheme }) => {
             to="skills"
             spy={true}
             smooth={true}
-            offset={50}
             duration={500}
             className="block py-2.5 px-4 rounded transition duration-200 "
           >
@@ -171,7 +167,7 @@ const SideBar = ({ data, setTheme, colorTheme }) => {
           )}
         </div>
         <Social socialLinks={data?.social} />
-        <small className="text-center">
+        <small className="text-center font-thin">
           Copyright &copy;2021 Lin Htet Swe. All Rights reserved
         </small>
       </aside>

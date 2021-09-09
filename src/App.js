@@ -23,20 +23,21 @@ const App = () => {
       <ParticlesCpn colorTheme={colorTheme} />
       <div className="lg:w-4/5 mx-auto">
         <SideBar data={data} setTheme={setTheme} colorTheme={colorTheme} />
-        <div className="z-30  lg:ml-72 px-10 py-5">
-          <div className="flex z-40 h-screen" id="home">
+        <div className="z-30  lg:ml-72">
+          <div className="flex h-screen" id="home">
             <Home />
           </div>
-          <div className="z-40 " id="education">
-            <Education profileData={data.profile} />
-          </div>
-          <div className=" z-40 " id="personal">
+          <div id="personal">
             <Personal profileData={data.profile} />
           </div>
-          <div className=" z-40 " id="skills">
+          <div id="education">
+            <Education profileData={data.profile} />
+          </div>
+
+          <div id="skills">
             <Skills />
           </div>
-          <div className=" z-40 " id="projects">
+          <div id="projects">
             <ProjectsPage />
           </div>
         </div>
