@@ -18,7 +18,7 @@ const SideBar = ({ data, setTheme, colorTheme }) => {
   // } else {
   return (
     <>
-      <div className="lg:hidden fixed z-50 w-full">
+      <div className="lg:hidden block fixed z-50 w-full">
         <button
           className="mobile-menu-button p-4 focus-within:outline-none focus-within:bg-gray-500 float-right"
           onClick={toggleSidebar}
@@ -72,7 +72,7 @@ const SideBar = ({ data, setTheme, colorTheme }) => {
             />
           </div>
           <div className="mt-5">
-            <p className="text-bold text-2xl font-head font-bold">
+            <p className="text-bold text-2xl font-head font-thin">
               Lin Htet Swe
             </p>
             <p className="text-sm  font-light font-body">
@@ -138,14 +138,14 @@ const SideBar = ({ data, setTheme, colorTheme }) => {
             </a>
           </Link>{" "}
           <Link
-            to="skills"
+            to="contact"
             spy={true}
             smooth={true}
             duration={500}
             className="block py-2.5 px-4 rounded transition duration-200 "
           >
-            <a href="/skills" className="navigation">
-              Skills
+            <a href="/contact" className="navigation">
+              Contact
             </a>
           </Link>
         </nav>

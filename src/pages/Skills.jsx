@@ -8,6 +8,31 @@ import {
   WORKOUT_LOGO,
 } from "../components/logos";
 import { useState } from "react";
+import Pages from "../components/Pages";
+
+const ParentProgress = ({ header, percentage, logo, children }) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="my-4">
+      <div className="shadow-md py-5 px-3 flex flex-row justify-between text-lg font-body font-light  bg-gray-200 dark:bg-gray-800 rounded-md">
+        <div>{header}</div>
+        <i
+          className={`fas fa-chevron-down w-5 h-5 my-auto float-right transform origin-center ${
+            open ? "rotate-180" : "rotate-0"
+          } duration-200 ease-in-out`}
+          onClick={() => setOpen(!open)}
+        ></i>
+      </div>
+      <div
+        className={`  mx-10 transform transition-height  duration-200 ease-out flex flex-col md:grid grid-flow-row grid-cols-2 gap-4  ${
+          open ? "h-full overflow-visible" : "h-0 overflow-hidden"
+        }   items-center mt-2 text-gray-700 dark:text-gray-200`}
+      >
+        {children}
+      </div>
+    </div>
+  );
+};
 
 const LogoRender = (props) => {
   if (props.logo === "html") {
@@ -30,46 +55,60 @@ const LogoRender = (props) => {
 };
 
 const ProgressBar = (props) => {
-  const Emoji = () => {
-    if (props.percentage >= 90) {
-      return <span>&#128526;</span>;
-    } else if (props.percentage >= 70) {
-      return <span>&#128516;</span>;
-    } else if (props.percentage >= 50) {
-      return <span>&#128517;</span>;
-    } else if (props.percentage >= 30) {
-      return <span>&#128528;</span>;
-    } else {
-      return <span>&#128532;</span>;
-    }
-  };
+  let fillColor;
+  if (props.percentage >= 75) {
+    // Emoji = <span>&#128526;</span>;
+    fillColor = "bg-green-500";
+  } else if (props.percentage >= 50) {
+    // Emoji = <span>&#128516;</span>;
+    fillColor = "bg-yellow-500";
+  } else if (props.percentage >= 25) {
+    // Emoji = <span>&#128517;</span>;
+    fillColor = "bg-red-500";
+  } else {
+    // Emoji = <span>&#128532;</span>;
+    fillColor = "bg-purple-500";
+  }
   const [showLogoName, setShowLogoName] = useState(false);
   return (
-    <div className="relative pt-1 w-full  ">
+    <div className="relative pt-1 w-full">
       <div className="flex mb-2 items-center justify-between">
         <div
-          className="w-7 h-7"
+          className="w-7 h-7 text-2xl"
+          style={{ color: `${props.color}` }}
           onMouseEnter={() => setShowLogoName(true)}
           onMouseLeave={() => setShowLogoName(false)}
         >
-          <LogoRender logo={props.logo} />
+          <i className={props.logo} />
         </div>
-        <div className={`${showLogoName ? "absolute" : "hidden"} `}>
-          <div className="absolute top-0 z-10 w-auto p-2 -mt-4 text-sm leading-tight text-gray-900 transform -translate-x-1/2 -translate-y-full bg-gray-300 rounded-lg shadow-lg">
+        <div className={`${showLogoName ? "absolute" : "hidden"} z-50`}>
+          <div className="absolute top-0  w-auto p-2 -mt-4 text-sm leading-tight text-gray-900 transform -translate-x-1/2 -translate-y-full bg-gray-300 rounded-lg shadow-lg">
             {props.label}
           </div>
         </div>
-        <div>
-          <span className="text-lg font-semibold inline-block py-1 px-2 uppercase rounded-full ">
-            <Emoji />
-          </span>
-        </div>
       </div>
-      <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200 dark:bg-gray-600">
+      <div className="overflow-hidden h-1 mb-4 text-xs flex rounded bg-gray-300 dark:bg-gray-600">
         <div
           style={{ width: `${props.percentage}%` }}
-          className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gray-500 dark:bg-white dark:text-gray-500 border-r-2 border-gray-800 dark:border-gray-800 "
-        ></div>
+          className={`shadow-none flex flex-col text-center  text-white justify-center ${fillColor} dark:text-gray-500`}
+        >
+          <div
+            className="w-1 h-4 absolute dark:bg-gray-500 bg-white "
+            style={{ left: `25%` }}
+          ></div>
+          <div
+            className="w-1 h-4 absolute dark:bg-gray-500 bg-white"
+            style={{ left: `50%` }}
+          ></div>
+          <div
+            className="w-1 h-4 absolute dark:bg-gray-500 bg-white "
+            style={{ left: `75%` }}
+          ></div>
+          <div
+            className={`w-2 h-2 absolute  ${fillColor} rounded-full`}
+            style={{ left: `${props.percentage - 1}%` }}
+          ></div>
+        </div>
       </div>
     </div>
   );
@@ -77,44 +116,109 @@ const ProgressBar = (props) => {
 
 const Skills = ({ profileData }) => {
   return (
-    <div>
-      <div className="mx-2 my-5 p-3 border-b-2 flex justify-between mt-4 text-gray-700 dark:text-gray-200">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M13 10V3L4 14h7v7l9-11h-7z"
-          />
-        </svg>
-        <h1 className="text-xl font-semibold text-gray-800 dark:text-white ">
-          My Skills
-        </h1>
-      </div>
-
-      <div className="px-2 pt-0 pb-4">
-        <div className="flex flex-col space-y-1 items-center mt-2 text-gray-700 dark:text-gray-200">
+    <Pages header="Skills" small="Things that I am good at">
+      <div className="px-6 pt-0 pb-4 ">
+        <div className="flex flex-row space-x-3 ">
+          <div className="flex flex-row">
+            <div className="w-1 h-4 bg-red-500 my-auto"></div>
+            <p className="my-auto ml-2">Beginner</p>
+          </div>
+          <div>
+            <div className="flex flex-row">
+              <div className="w-1 h-4 bg-yellow-500 my-auto"></div>
+              <p className="my-auto ml-2">Ameteur</p>
+            </div>
+          </div>
+          <div>
+            <div className="flex flex-row">
+              <div className="w-1 h-4 bg-green-500 my-auto"></div>
+              <p className="my-auto ml-2">Pro</p>
+            </div>
+          </div>
+        </div>
+        <ParentProgress header="Web Development" percentage="75" logo="html">
           <ProgressBar
             percentage="90"
             label="HTML/CSS"
             icon="devicon-html5-plain-wordmark"
-            logo="html"
+            logo="fab fa-html5"
+            color="#e34c26"
           />
-          <ProgressBar percentage="70" label="Javascript/React" logo="react" />
-          <ProgressBar percentage="50" label="Javascript/Node" logo="node" />
-          <ProgressBar percentage="40" label="Php" logo="php" />
-          <ProgressBar percentage="15" label="Python" logo="python" />
-          <ProgressBar percentage="90" label="Football" logo="football" />
-          <ProgressBar percentage="60" label="Workout" logo="workout" />
-        </div>
+          <ProgressBar
+            percentage="70"
+            label="Javascript/React"
+            logo="fab fa-react"
+            color="#61dbfb"
+          />
+          <ProgressBar
+            percentage="50"
+            label="Javascript/Node"
+            logo="fab fa-node-js"
+            color="#3c873a"
+          />
+        </ParentProgress>
+        <ParentProgress header="Programming">
+          <ProgressBar
+            percentage="40"
+            label="Php"
+            logo="fab fa-php"
+            color="#01a0d7"
+          />
+          <ProgressBar
+            percentage="40"
+            label="Php"
+            logo="fab fa-java"
+            color="#f89820"
+          />
+          <ProgressBar
+            percentage="15"
+            label="Python"
+            logo="fab fa-python"
+            color="#ffd43b"
+          />
+        </ParentProgress>
+        <ParentProgress header="Sports">
+          <ProgressBar
+            percentage="90"
+            label="Football"
+            logo="fas fa-futbol"
+            color="black"
+          />
+          <ProgressBar
+            percentage="60"
+            label="Workout"
+            logo="fas fa-dumbbell"
+            color="#555555"
+          />
+          <ProgressBar
+            percentage="60"
+            label="Swimming"
+            logo="fas fa-swimmer"
+            color="#00b2ff"
+          />
+        </ParentProgress>
+        <ParentProgress header="Others">
+          <ProgressBar
+            percentage="90"
+            label="I love eating XD"
+            logo="fas fa-utensils"
+            color="#b0b3b7"
+          />
+          <ProgressBar
+            percentage="75"
+            label="Sleeping is the best relaxation"
+            logo="fas fa-bed"
+            color="gray"
+          />
+          <ProgressBar
+            percentage="90"
+            label="Gaming"
+            logo="fas fa-gamepad"
+            color="blue"
+          />
+        </ParentProgress>
       </div>
-    </div>
+    </Pages>
   );
 };
 export default Skills;

@@ -3,7 +3,7 @@ import Particles from "react-particles-js";
 const ParticlesCpn = ({ colorTheme }) => {
   return (
     <Particles
-      className="fixed w-full h-screen z-0"
+      className="fixed h-screen w-screen"
       params={{
         particles: {
           number: {

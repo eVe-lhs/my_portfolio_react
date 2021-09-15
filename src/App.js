@@ -6,9 +6,9 @@ import Education from "./pages/Education";
 import { getProfileAndSocialData } from "./lib/data";
 import Personal from "./pages/Personal";
 import Skills from "./pages/Skills";
-import { useState } from "react";
 import useDarkMode from "./hook/useDarkMode";
 import ProjectsPage from "./pages/Projects";
+import Contact from "./pages/Contact";
 // const Page = (props) => {
 //   return <div className="h-screen"></div>
 // }
@@ -21,9 +21,9 @@ const App = () => {
   return (
     <>
       <ParticlesCpn colorTheme={colorTheme} />
-      <div className="lg:w-4/5 mx-auto">
+      <div className="lg:w-4/5 mx-auto relative w-full">
         <SideBar data={data} setTheme={setTheme} colorTheme={colorTheme} />
-        <div className="z-30  lg:ml-72">
+        <div className="lg:ml-72 mb-10">
           <div className="flex h-screen" id="home">
             <Home />
           </div>
@@ -39,6 +39,9 @@ const App = () => {
           </div>
           <div id="projects">
             <ProjectsPage />
+          </div>
+          <div id="contact">
+            <Contact />
           </div>
         </div>
       </div>

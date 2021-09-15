@@ -6,6 +6,7 @@ module.exports = {
     extend: {
       transitionProperty: {
         width: "width",
+        height: "height",
       },
       fontFamily: {
         body: ["'Exo 2', sans-serif"],

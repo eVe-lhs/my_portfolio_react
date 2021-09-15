@@ -5,7 +5,7 @@ import App from "./App";
 
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 
-const url = "http://localhost:1337/graphql";
+const url = "https://lhscms.herokuapp.com/graphql";
 const client = new ApolloClient({
   uri: url,
   cache: new InMemoryCache(),
