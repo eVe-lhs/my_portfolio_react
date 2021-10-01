@@ -8,6 +8,9 @@ module.exports = {
         width: "width",
         height: "height",
       },
+      zIndex: {
+        100: "100",
+      },
       fontFamily: {
         body: ["'Exo 2', sans-serif"],
         head: ["'Abril Fatface', cursive"],

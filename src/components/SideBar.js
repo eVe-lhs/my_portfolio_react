@@ -1,7 +1,48 @@
 import React, { useState } from "react";
 import { Social } from "./Social";
-import useDarkMode from "../hook/useDarkMode";
+import { motion } from "framer-motion";
 import { Link } from "react-scroll";
+
+const variant = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 1,
+      ease: "easeInOut",
+      staggerChildren: 0.3,
+    },
+  },
+};
+
+const navChildVariant = {
+  hidden: {
+    opacity: 0,
+    x: -10,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+  },
+};
+
+const LinkDiv = ({ to, children }) => {
+  return (
+    <Link
+      to={to}
+      spy={true}
+      smooth={true}
+      duration={(distance) => {
+        return Math.abs(distance) * 0.9;
+      }}
+      className="block py-2.5 px-4 rounded transition duration-200 "
+    >
+      {children}
+    </Link>
+  );
+};
 
 const SideBar = ({ data, setTheme, colorTheme }) => {
   const [open, setOpen] = useState(false);
@@ -18,52 +59,85 @@ const SideBar = ({ data, setTheme, colorTheme }) => {
   // } else {
   return (
     <>
-      <div className="lg:hidden block fixed z-50 w-full">
-        <button
-          className="mobile-menu-button p-4 focus-within:outline-none focus-within:bg-gray-500 float-right"
-          onClick={toggleSidebar}
-        >
-          <svg
-            className="h-5 w-5"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
+      <div className="lg:hidden block fixed z-50 w-screen">
+        <div className="py-4 float-right" onClick={toggleSidebar}>
+          <motion.svg
+            viewBox="0 0 100 80"
+            width="40"
+            height="40"
             stroke="currentColor"
+            fill="currentColor"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
-        </button>
+            <motion.rect
+              initial={false}
+              animate={
+                !open
+                  ? {
+                      translateY: 0,
+                      rotate: 0,
+                    }
+                  : { translateY: 15, rotate: 45 }
+              }
+              transition={{
+                duration: 0.5,
+                ease: "easeOut",
+              }}
+              width="40"
+              height="5"
+              rx="3"
+            ></motion.rect>
+            <motion.rect
+              initial={false}
+              animate={
+                open
+                  ? {
+                      scaleX: 0,
+                      translateX: -100,
+                    }
+                  : { scaleX: 1, translateX: 0 }
+              }
+              transition={{
+                duration: 0.5,
+                ease: "easeInOut",
+              }}
+              y="15"
+              width="40"
+              height="5"
+              rx="3"
+            ></motion.rect>
+            <motion.rect
+              initial={false}
+              animate={
+                !open
+                  ? { translateY: 0, rotate: 0 }
+                  : { translateY: -15, rotate: -45 }
+              }
+              transition={{
+                duration: 0.5,
+                ease: "easeOut",
+              }}
+              y="30"
+              width="40"
+              height="5"
+              rx="3"
+            ></motion.rect>
+          </motion.svg>
+        </div>
       </div>
 
-      <aside
+      <motion.aside
         href="/"
         className={`lg:w-72  md:w-1/4 w-2/3 pt-5 px-4 fixed inset-y-0 mr-5  transform z-50 lg:h-screen overflow-y-auto ${
           !open ? "-translate-x-full" : ""
-        }   lg:translate-x-0  transition duration-200 ease-in-out bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-white`}
+        }   lg:translate-x-0  transition duration-500 ease-out bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-white`}
+        variants={variant}
+        initial="hidden"
+        animate="visible"
       >
-        <div className="float-right lg:hidden block" onClick={toggleSidebar}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </div>
-
-        <div className="flex flex-col items-center text-center justify-center space-x-2 px-4">
+        <motion.div
+          className="flex flex-col items-center text-center justify-center space-x-2 px-4"
+          variants={navChildVariant}
+        >
           <div className="relative h-32 w-32 rounded-full">
             <img
               alt="lin htet swe"
@@ -79,77 +153,69 @@ const SideBar = ({ data, setTheme, colorTheme }) => {
               A student and web-developer
             </p>
           </div>
-        </div>
+        </motion.div>
 
         <nav className="text-center font-light space-y-0 mt-6 font-body">
-          <Link
-            to="home"
-            spy={true}
-            smooth={true}
-            duration={500}
-            className="block py-2.5 px-4 rounded transition duration-200 "
-          >
-            <a href="/home" className="navigation">
-              Home
-            </a>
-          </Link>
-          <Link
-            to="personal"
-            spy={true}
-            smooth={true}
-            duration={500}
-            className="block py-2.5 px-4 rounded transition duration-200 "
-          >
-            <a href="/about" className="navigation">
-              About Me
-            </a>
-          </Link>
-          <Link
-            to="education"
-            spy={true}
-            smooth={true}
-            duration={500}
-            className="block py-2.5 px-4 rounded transition duration-200 "
-          >
-            <a href="/education" className="navigation">
-              Education
-            </a>
-          </Link>
-          <Link
-            to="skills"
-            spy={true}
-            smooth={true}
-            duration={500}
-            className="block py-2.5 px-4 rounded transition duration-200 "
-          >
-            <a href="/skills" className="navigation">
-              Skills
-            </a>
-          </Link>{" "}
-          <Link
-            to="projects"
-            spy={true}
-            smooth={true}
-            duration={500}
-            className="block py-2.5 px-4 rounded transition duration-200 "
-          >
-            <a href="/projects" className="navigation">
-              Projects
-            </a>
-          </Link>{" "}
-          <Link
-            to="contact"
-            spy={true}
-            smooth={true}
-            duration={500}
-            className="block py-2.5 px-4 rounded transition duration-200 "
-          >
-            <a href="/contact" className="navigation">
-              Contact
-            </a>
-          </Link>
+          <motion.div variants={navChildVariant}>
+            <LinkDiv to="home">
+              <div href="/home" className="navigation" onClick={toggleSidebar}>
+                Home
+              </div>
+            </LinkDiv>
+          </motion.div>
+          <motion.div variants={navChildVariant}>
+            <LinkDiv to="personal">
+              <div href="/about" className="navigation" onClick={toggleSidebar}>
+                About Me
+              </div>
+            </LinkDiv>
+          </motion.div>
+          <motion.div variants={navChildVariant}>
+            <LinkDiv to="education">
+              <div
+                href="/education"
+                className="navigation"
+                onClick={toggleSidebar}
+              >
+                Education
+              </div>
+            </LinkDiv>
+          </motion.div>
+          <motion.div variants={navChildVariant}>
+            <LinkDiv to="skills">
+              <div
+                href="/skills"
+                className="navigation"
+                onClick={toggleSidebar}
+              >
+                Skills
+              </div>
+            </LinkDiv>
+          </motion.div>
+          <motion.div variants={navChildVariant}>
+            <LinkDiv to="projects">
+              <div
+                href="/projects"
+                className="navigation"
+                onClick={toggleSidebar}
+              >
+                Projects
+              </div>
+            </LinkDiv>
+          </motion.div>
+          <motion.div variants={navChildVariant}>
+            <LinkDiv to="contact">
+              <div
+                href="/contact"
+                className="navigation"
+                onClick={toggleSidebar}
+              >
+                Contact
+              </div>
+            </LinkDiv>
+          </motion.div>
         </nav>
-        <div className="justify-center block">
+        <motion.div className="justify-center block" variants={navChildVariant}>
           {colorTheme === "light" ? (
             <button
               className="w-full border-2 px-2 py-2 rounded border-white text-white hover:bg-white hover:text-black text-center"
@@ -165,12 +231,12 @@ const SideBar = ({ data, setTheme, colorTheme }) => {
               {colorTheme.toUpperCase()}
             </button>
           )}
-        </div>
+        </motion.div>
         <Social socialLinks={data?.social} />
         <small className="text-center font-thin">
           Copyright &copy;2021 Lin Htet Swe. All Rights reserved
         </small>
-      </aside>
+      </motion.aside>
     </>
   );
 };

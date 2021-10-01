@@ -1,4 +1,42 @@
 import Pages from "../components/Pages";
+import { motion } from "framer-motion";
+
+const reveal = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 1,
+      ease: "easeOut",
+    },
+  },
+};
+
+const revealLeft = {
+  hidden: { opacity: 0, x: -30 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 1,
+      ease: "easeOut",
+    },
+  },
+};
+
+const revealRight = {
+  hidden: { opacity: 0, x: 30 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 1,
+      ease: "easeOut",
+    },
+  },
+};
 
 const TimelineItem = ({ left, type, date, description }) => {
   let timelineClass;
@@ -22,17 +60,23 @@ const TimelineItem = ({ left, type, date, description }) => {
   return (
     <div className={timelineClass}>
       <div className="md:w-5/12 w-0"></div>
-      <div className="z-20 flex ml-1 items-center order-1 dark:bg-gray-800 bg-gray-300 shadow-xl w-12 h-12 rounded-full border-2 border-black dark:border-white">
+      <motion.div
+        className="z-20 flex ml-1 items-center order-1 dark:bg-gray-800 bg-gray-300 shadow-xl w-12 h-12 rounded-full border-2 border-black dark:border-white"
+        variants={reveal}
+      >
         <h1 className="mx-auto font-semibold text-xl">
           <i className={iconClass}></i>
         </h1>
-      </div>
-      <div className="order-1 dark:bg-gray-800 bg-gray-300 rounded-lg shadow-xl md:w-5/12 w-4/5 px-6 py-4 ml-5 md:ml-0">
+      </motion.div>
+      <motion.div
+        className="order-1 dark:bg-gray-800 bg-gray-300 rounded-lg shadow-xl md:w-5/12 w-4/5 px-6 py-4 ml-5 md:ml-0"
+        variants={left ? revealLeft : revealRight}
+      >
         <h3 className="mb-3 font-bold  text-xl">{date}</h3>
         <p className="text-lg leading-snug tracking-wide  text-opacity-100 ">
           {description}
         </p>
-      </div>
+      </motion.div>
     </div>
   );
 };
@@ -44,7 +88,10 @@ const Education = ({ profileData }) => {
         <div className="px-6 w-full">
           <div className="container  mx-auto w-full h-full">
             <div className="relative wrap overflow-hidden md:p-10 h-full">
-              <div className="absolute border-opacity-20  bg-black dark:bg-white h-full border-2 md:left-1/2 left-6"></div>
+              <motion.div
+                className="absolute border-opacity-20  bg-black dark:bg-white h-full border-2 md:left-1/2 left-6"
+                variants={reveal}
+              ></motion.div>
               <TimelineItem
                 left={false}
                 type="born"

@@ -9,6 +9,10 @@ import Skills from "./pages/Skills";
 import useDarkMode from "./hook/useDarkMode";
 import ProjectsPage from "./pages/Projects";
 import Contact from "./pages/Contact";
+import Loader from "./components/Loader";
+import ScrollProgress from "./components/ScrollProgress";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // const Page = (props) => {
 //   return <div className="h-screen"></div>
 // }
@@ -16,16 +20,21 @@ import Contact from "./pages/Contact";
 const App = () => {
   const [setTheme, colorTheme] = useDarkMode();
 
-  const { loading, error, data } = useQuery(getProfileAndSocialData);
-  if (loading) return <div>loading...</div>;
+  const { loading, data } = useQuery(getProfileAndSocialData);
+
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <>
+      <ScrollProgress />
       <ParticlesCpn colorTheme={colorTheme} />
-      <div className="lg:w-4/5 mx-auto relative w-full">
+      <div className="lg:w-4/5 mx-auto relative w-screen">
         <SideBar data={data} setTheme={setTheme} colorTheme={colorTheme} />
         <div className="lg:ml-72 mb-10">
           <div className="flex h-screen" id="home">
-            <Home />
+            <Home colorTheme={colorTheme} />
           </div>
           <div id="personal">
             <Personal profileData={data.profile} />
@@ -44,7 +53,8 @@ const App = () => {
             <Contact />
           </div>
         </div>
-      </div>
+      </div>{" "}
+      <ToastContainer />
     </>
   );
 };

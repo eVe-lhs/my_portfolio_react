@@ -1,57 +1,75 @@
-import {
-  FOOTBALL_LOGO,
-  HTML_LOGO,
-  NODE_LOGO,
-  PHP_LOGO,
-  PYTHON_LOGO,
-  REACT_LOGO,
-  WORKOUT_LOGO,
-} from "../components/logos";
 import { useState } from "react";
 import Pages from "../components/Pages";
+import { AnimatePresence, motion } from "framer-motion";
+
+const reveal = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 1,
+      ease: "easeOut",
+    },
+  },
+};
+
+const revealUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+};
+
+const accordion = {
+  open: { opacity: 1, height: "auto" },
+  collapsed: {
+    opacity: 0,
+    height: 0,
+  },
+  transition: {
+    duration: 0.7,
+    ease: "easeOut",
+  },
+};
 
 const ParentProgress = ({ header, percentage, logo, children }) => {
   const [open, setOpen] = useState(false);
   return (
-    <div className="my-4">
+    <motion.div
+      className="my-4 relative"
+      variants={revealUp}
+      onClick={() => setOpen(!open)}
+    >
       <div className="shadow-md py-5 px-3 flex flex-row justify-between text-lg font-body font-light  bg-gray-200 dark:bg-gray-800 rounded-md">
         <div>{header}</div>
         <i
           className={`fas fa-chevron-down w-5 h-5 my-auto float-right transform origin-center ${
             open ? "rotate-180" : "rotate-0"
-          } duration-200 ease-in-out`}
-          onClick={() => setOpen(!open)}
+          } duration-700 ease-in-out`}
         ></i>
       </div>
-      <div
-        className={`  mx-10 transform transition-height  duration-200 ease-out flex flex-col md:grid grid-flow-row grid-cols-2 gap-4  ${
-          open ? "h-full overflow-visible" : "h-0 overflow-hidden"
-        }   items-center mt-2 text-gray-700 dark:text-gray-200`}
-      >
-        {children}
-      </div>
-    </div>
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            className={`mx-10 flex flex-col md:grid grid-flow-row grid-cols-2 gap-4 overflow-hidden items-center  text-gray-700 dark:text-gray-200`}
+            variants={accordion}
+            initial="collapsed"
+            animate="open"
+            exit="collapsed"
+          >
+            {children}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
-};
-
-const LogoRender = (props) => {
-  if (props.logo === "html") {
-    return <HTML_LOGO />;
-  } else if (props.logo === "react") {
-    return <REACT_LOGO />;
-  } else if (props.logo === "node") {
-    return <NODE_LOGO />;
-  } else if (props.logo === "python") {
-    return <PYTHON_LOGO />;
-  } else if (props.logo === "php") {
-    return <PHP_LOGO />;
-  } else if (props.logo === "football") {
-    return <FOOTBALL_LOGO />;
-  } else if (props.logo === "workout") {
-    return <WORKOUT_LOGO />;
-  } else {
-    return <HTML_LOGO />;
-  }
 };
 
 const ProgressBar = (props) => {
@@ -71,7 +89,7 @@ const ProgressBar = (props) => {
   }
   const [showLogoName, setShowLogoName] = useState(false);
   return (
-    <div className="relative pt-1 w-full">
+    <div className="mt-4 w-full ">
       <div className="flex mb-2 items-center justify-between">
         <div
           className="w-7 h-7 text-2xl"
@@ -87,7 +105,7 @@ const ProgressBar = (props) => {
           </div>
         </div>
       </div>
-      <div className="overflow-hidden h-1 mb-4 text-xs flex rounded bg-gray-300 dark:bg-gray-600">
+      <div className="relative h-1 mb-4 text-xs flex rounded bg-gray-300 dark:bg-gray-600">
         <div
           style={{ width: `${props.percentage}%` }}
           className={`shadow-none flex flex-col text-center  text-white justify-center ${fillColor} dark:text-gray-500`}
@@ -118,7 +136,7 @@ const Skills = ({ profileData }) => {
   return (
     <Pages header="Skills" small="Things that I am good at">
       <div className="px-6 pt-0 pb-4 ">
-        <div className="flex flex-row space-x-3 ">
+        <motion.div className="flex flex-row space-x-3 " variants={reveal}>
           <div className="flex flex-row">
             <div className="w-1 h-4 bg-red-500 my-auto"></div>
             <p className="my-auto ml-2">Beginner</p>
@@ -135,7 +153,7 @@ const Skills = ({ profileData }) => {
               <p className="my-auto ml-2">Pro</p>
             </div>
           </div>
-        </div>
+        </motion.div>
         <ParentProgress header="Web Development" percentage="75" logo="html">
           <ProgressBar
             percentage="90"

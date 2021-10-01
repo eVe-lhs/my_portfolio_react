@@ -1,10 +1,23 @@
+import { motion } from "framer-motion";
+
+const socialVariant = {
+  hidden: {
+    opacity: 0,
+    y: 10,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+  },
+};
+
 export const Social = ({ socialLinks }) => {
   return (
     <>
       <div className="px-6 py-4">
         <div className="flex items-center justify-center space-x-3">
-          <a href="#">
-            <button className="bg-blue-500 dark:bg-white px-2 py-2 font-semibold text-white dark:text-blue-500 inline-flex items-center space-x-2 rounded-full hover:opacity-50">
+          <motion.a href="#" variants={socialVariant}>
+            <button className="bg-blue-500  px-2 py-2 font-semibold text-white  inline-flex items-center space-x-2 rounded-full hover:opacity-50">
               <svg
                 width="24"
                 height="24"
@@ -18,9 +31,9 @@ export const Social = ({ socialLinks }) => {
                 />
               </svg>
             </button>
-          </a>
-          <a href={socialLinks?.Twitter}>
-            <button className="bg-blue-300 dark:bg-white px-2 py-2 font-semibold text-white dark:text-blue-300 inline-flex items-center space-x-2 rounded-full hover:opacity-50">
+          </motion.a>
+          <motion.a href={socialLinks?.Twitter} variants={socialVariant}>
+            <button className="bg-blue-300  px-2 py-2 font-semibold text-white  inline-flex items-center space-x-2 rounded-full hover:opacity-50">
               <svg
                 width="24"
                 height="24"
@@ -36,9 +49,9 @@ export const Social = ({ socialLinks }) => {
                 />
               </svg>
             </button>
-          </a>
-          <a href={socialLinks?.Instagram}>
-            <button className="bg-red-500 dark:bg-white px-2 py-2 font-semibold text-white dark:text-red-500 inline-flex items-center space-x-2 rounded-full hover:opacity-50">
+          </motion.a>
+          <motion.a href={socialLinks?.Instagram} variants={socialVariant}>
+            <button className="bg-red-500  px-2 py-2 font-semibold text-white  inline-flex items-center space-x-2 rounded-full hover:opacity-50">
               <svg
                 width="24"
                 height="24"
@@ -64,9 +77,9 @@ export const Social = ({ socialLinks }) => {
                 />
               </svg>
             </button>
-          </a>
-          <a href={socialLinks?.GitHub}>
-            <button className="bg-black dark:bg-white px-2 py-2 font-semibold text-white dark:text-black inline-flex items-center space-x-2 rounded-full hover:opacity-50">
+          </motion.a>
+          <motion.a href={socialLinks?.GitHub} variants={socialVariant}>
+            <button className="bg-black  px-2 py-2 font-semibold text-white  inline-flex items-center space-x-2 rounded-full hover:opacity-50">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -82,10 +95,10 @@ export const Social = ({ socialLinks }) => {
                 <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path>
               </svg>
             </button>
-          </a>
+          </motion.a>
         </div>
 
-        <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200"></div>
+        <div className="flex items-center mt-4 text-gray-700 text-gray-200"></div>
       </div>
     </>
   );
