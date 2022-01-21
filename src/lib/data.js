@@ -21,3 +21,19 @@ export const getProfileAndSocialData = gql`
     }
   }
 `;
+
+export const getProjects = gql`
+  query getProjects {
+    projects {
+      Title
+      Type
+      Cover {
+        url
+      }
+      tags {
+        name
+      }
+      GitLink
+    }
+  }
+`;

@@ -38,7 +38,7 @@ const revealRight = {
   },
 };
 
-const TimelineItem = ({ left, type, date, description }) => {
+const TimelineItem = ({ left, type, date, description, keyProp }) => {
   let timelineClass;
   left
     ? (timelineClass =
@@ -58,7 +58,7 @@ const TimelineItem = ({ left, type, date, description }) => {
     iconClass = "fas fa-university";
   }
   return (
-    <div className={timelineClass}>
+    <div className={timelineClass} key={keyProp}>
       <div className="md:w-5/12 w-0"></div>
       <motion.div
         className="z-20 flex ml-1 items-center order-1 dark:bg-gray-800 bg-gray-300 shadow-xl w-12 h-12 rounded-full border-2 border-black dark:border-white"
@@ -93,6 +93,8 @@ const Education = ({ profileData }) => {
                 variants={reveal}
               ></motion.div>
               <TimelineItem
+                keyProp="1"
+                key="1"
                 left={false}
                 type="born"
                 date="2001"
@@ -103,7 +105,9 @@ const Education = ({ profileData }) => {
                 ]}
               />
               <TimelineItem
+                keyProp="2"
                 left={true}
+                key="2"
                 type="school"
                 date="2006"
                 description={[
@@ -113,7 +117,9 @@ const Education = ({ profileData }) => {
                 ]}
               />
               <TimelineItem
+                keyProp="3"
                 left={false}
+                key="3"
                 type="travel"
                 date="2013"
                 description={[
@@ -123,7 +129,9 @@ const Education = ({ profileData }) => {
                 ]}
               />
               <TimelineItem
+                keyProp="4"
                 left={true}
+                key="4"
                 type="graduate"
                 date="2017"
                 description={[
@@ -133,7 +141,9 @@ const Education = ({ profileData }) => {
                 ]}
               />
               <TimelineItem
+                keyProp="5"
                 left={false}
+                key="5"
                 type="university"
                 date="2018"
                 description={[

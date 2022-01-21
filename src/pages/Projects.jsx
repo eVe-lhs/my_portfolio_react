@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import Pages from "../components/Pages";
-import { AnimatePresence, motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
+import { useQuery } from "@apollo/client";
+import { getProjects } from "../lib/data";
+import Loader from "../components/Loader";
 
 const reveal = {
   hidden: {
@@ -181,8 +184,11 @@ const Items = ({ children, value }) => {
         }}
         animate={{ x: value * -100 + "%" }}
       >
-        {React.Children.map(children, (child, i) => (
-          <div className="w-full flex-shrink-0 overflow-hidden outline-none">
+        {React.Children.map(children, (child, index) => (
+          <div
+            className="w-full flex-shrink-0 overflow-hidden outline-none"
+            key={index}
+          >
             {child}
           </div>
         ))}
@@ -191,7 +197,7 @@ const Items = ({ children, value }) => {
   );
 };
 
-const ProjectCard = ({ imageUrl, header, tags, tab, type, index }) => {
+const ProjectCard = ({ imageUrl, header, tags, tab, type, githubLink }) => {
   const [hovered, setHovered] = useState(false);
   return (
     <motion.div
@@ -224,15 +230,24 @@ const ProjectCard = ({ imageUrl, header, tags, tab, type, index }) => {
             hovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-7"
           } `}
         >
-          {tags.map((tag) => (
+          {tags.map((tag, index) => (
             <span
               className={`text-white uppercase text-sm tracking-wide m-2 px-2 py-1`}
-              key={tag}
+              key={index}
             >
-              {tag}
+              {tag.name}
             </span>
           ))}
         </div>
+        <a
+          className={`rounded-md p-2 bg-black flex text-white gap-2 align-middle mt-3 transform duration-200 ease-in-out hover:scale-110 ${
+            hovered ? "opacity-100 translate-x-0" : "opacity-0 translate-x-7"
+          }`}
+          href={githubLink}
+        >
+          <i className="text-sm fab fa-github"></i>
+          <p className="text-sm font-body">View On Github</p>
+        </a>
       </div>
       <div className="w-full h-72 relative">
         <img
@@ -250,11 +265,15 @@ const ProjectCard = ({ imageUrl, header, tags, tab, type, index }) => {
 const ProjectsPage = () => {
   const [value, setValue] = useState(0);
   const [tab, setTab] = useState("All");
-  const tabs = ["All", "Web Development", "Programming", "Others"];
+  const tabs = ["All", "WebDevelopment", "Programming", "Others"];
+  const { loading, data } = useQuery(getProjects);
+  if (loading) {
+    return <Loader />;
+  }
   const Projects =
     tab === "All"
-      ? projects
-      : projects.filter((project) => project.type === tab);
+      ? data?.projects
+      : data?.projects.filter((project) => project.Type === tab);
   return (
     <Pages header="Projects" small="Things that I have done">
       <motion.div variants={reveal}>
@@ -266,19 +285,21 @@ const ProjectsPage = () => {
           setValue={setValue}
         />
         <Items value={value} tab={tab}>
-          {tabs.map((tab) => (
+          {tabs.map((tab, index) => (
             <motion.div
+              key={index}
               className="mx-8 md:grid md:grid-cols-2 flex-col gap-10 space-y-4 md:space-y-0 md:mt-3 "
               variants={container}
             >
               {Projects.map((project, index) => (
                 <ProjectCard
-                  imageUrl={project.imageUrl}
-                  header={project.header}
+                  imageUrl={project.Cover.url}
+                  header={project.Title}
                   tags={project.tags}
                   index={index}
                   tab={tab}
-                  type={project.type}
+                  type={project.Type}
+                  githubLink={project.GitLink}
                 />
               ))}
             </motion.div>

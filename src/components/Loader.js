@@ -9,12 +9,13 @@ const loaderVariants = {
       y: {
         ease: "easeInOut",
         duration: 0.3,
-        yoyo: Infinity,
+        repeatType: "mirror",
+        repeat: Infinity,
       },
       x: {
         duration: 0.3,
-        yoyo: Infinity,
-        ease: "easeInOut",
+        repeatType: "mirror",
+        repeat: Infinity,
       },
     },
   },

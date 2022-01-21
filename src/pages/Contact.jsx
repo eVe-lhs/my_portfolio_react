@@ -57,17 +57,15 @@ const revealRight = {
 const ContactInfo = ({ icon, text }) => {
   return (
     <motion.div
-      className="flex flex-row  shadow-lg mt-8 md:mt-0"
+      className="flex flex-row  shadow-lg mt-8 md:mt-0 rounded-md"
       variants={revealLeft}
     >
-      <div className="w-28 h-28 flex items-center bg-gray-200 dark:bg-gray-800">
+      <div className="w-28 h-28 flex items-center bg-gray-200 dark:bg-gray-800 rounded-tl-md rounded-bl-md">
         <div className="text-3xl mx-auto">
-          <i
-            className={`${icon} text-blue-500 dark:text-gray-100 font-thin`}
-          ></i>
+          <i className={`${icon} text-black dark:text-gray-100 font-thin`}></i>
         </div>
       </div>
-      <div className="ml-5 my-auto font-body font-light">
+      <div className="ml-5 my-auto font-body font-light md:text-base text-sm">
         <p className="">{text}</p>
       </div>
     </motion.div>
@@ -88,7 +86,7 @@ const ContactForm = () => {
     };
 
     await axios
-      .post("http://localhost:8000/email", messageObject)
+      .post("/email", messageObject)
       .then((response) => {
         toast.success(response.data.message, {
           position: toast.POSITION.BOTTOM_RIGHT,
@@ -121,7 +119,7 @@ const ContactForm = () => {
     <form onSubmit={submitForm}>
       <motion.div variants={revealRight}>
         <input
-          className="w-full dark:bg-gray-800 bg-gray-200  mt-2 p-3  focus:outline-none focus:shadow-outline"
+          className="w-full dark:bg-gray-800 bg-gray-200  mt-2 p-3 rounded-md focus:outline-none focus:shadow-outline"
           type="text"
           value={name}
           onChange={(event) => setName(event.target.value)}
@@ -130,7 +128,7 @@ const ContactForm = () => {
       </motion.div>
       <motion.div className="mt-8" variants={revealRight}>
         <input
-          className="w-full dark:bg-gray-800 bg-gray-200  mt-2 p-3  focus:outline-none focus:shadow-outline"
+          className="w-full dark:bg-gray-800 bg-gray-200  mt-2 p-3 rounded-md focus:outline-none focus:shadow-outline"
           placeholder="Email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
@@ -139,7 +137,7 @@ const ContactForm = () => {
       </motion.div>
       <motion.div className="mt-8" variants={revealRight}>
         <textarea
-          className="w-full h-32 dark:bg-gray-800 bg-gray-200  mt-2 p-3  focus:outline-none focus:shadow-outline resize-none"
+          className="w-full h-32 dark:bg-gray-800 bg-gray-200  mt-2 p-3 rounded-md focus:outline-none focus:shadow-outline resize-none"
           placeholder="Message"
           value={message}
           onChange={(event) => setMessage(event.target.value)}
@@ -147,7 +145,7 @@ const ContactForm = () => {
       </motion.div>
       <motion.div className="mt-8" variants={revealRight}>
         <button
-          className="uppercase text-sm font-bold tracking-wide bg-blue-400 dark:bg-black text-gray-100 p-3   focus:outline-none focus:shadow-outline"
+          className="uppercase shadow-lg text-sm font-bold tracking-wide bg-blue-500 dark:bg-gray-800 text-white  p-3 rounded-sm  focus:shadow-outline hover:"
           type="submit"
         >
           Send Message

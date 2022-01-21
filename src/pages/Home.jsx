@@ -76,7 +76,7 @@ const Home = ({ colorTheme }) => {
           </motion.p>
         </motion.div>{" "}
         <motion.svg
-          className="absolute z-0 block w-screen h-screen"
+          className="absolute z-0 block md:w-auto w-screen h-screen"
           id="visual"
           viewBox="0 0 900 675"
           xmlns="http://www.w3.org/2000/svg"

@@ -60,68 +60,58 @@ const SideBar = ({ data, setTheme, colorTheme }) => {
   return (
     <>
       <div className="lg:hidden block fixed z-50 w-screen">
-        <div className="py-4 float-right" onClick={toggleSidebar}>
-          <motion.svg
-            viewBox="0 0 100 80"
-            width="40"
-            height="40"
-            stroke="currentColor"
-            fill="currentColor"
-          >
-            <motion.rect
-              initial={false}
-              animate={
-                !open
-                  ? {
-                      translateY: 0,
-                      rotate: 0,
-                    }
-                  : { translateY: 15, rotate: 45 }
-              }
-              transition={{
-                duration: 0.5,
-                ease: "easeOut",
-              }}
-              width="40"
-              height="5"
-              rx="3"
-            ></motion.rect>
-            <motion.rect
-              initial={false}
-              animate={
-                open
-                  ? {
-                      scaleX: 0,
-                      translateX: -100,
-                    }
-                  : { scaleX: 1, translateX: 0 }
-              }
-              transition={{
-                duration: 0.5,
-                ease: "easeInOut",
-              }}
-              y="15"
-              width="40"
-              height="5"
-              rx="3"
-            ></motion.rect>
-            <motion.rect
-              initial={false}
-              animate={
-                !open
-                  ? { translateY: 0, rotate: 0 }
-                  : { translateY: -15, rotate: -45 }
-              }
-              transition={{
-                duration: 0.5,
-                ease: "easeOut",
-              }}
-              y="30"
-              width="40"
-              height="5"
-              rx="3"
-            ></motion.rect>
-          </motion.svg>
+        <div
+          className="m-5 float-right w-5 h-5 flex flex-col justify-between relative"
+          onClick={toggleSidebar}
+        >
+          <motion.div
+            initial={false}
+            animate={
+              !open
+                ? {
+                    translateY: [8, 8, 0],
+                    rotate: [45, 0, 0],
+                  }
+                : { translateY: [0, 8, 8], rotate: [0, 0, 45] }
+            }
+            transition={{
+              duration: 0.5,
+              ease: "easeOut",
+            }}
+            className="origin-center w-full h-1/5 bg-black dark:bg-white rounded-sm"
+          />
+          <motion.div
+            initial={false}
+            animate={
+              open
+                ? {
+                    scaleX: 0,
+                    translateX: -15,
+                  }
+                : { scaleX: 1, translateX: 0 }
+            }
+            transition={{
+              duration: 0.5,
+              ease: "easeInOut",
+            }}
+            className="origin-center w-full h-1/5 bg-black dark:bg-white rounded-sm"
+          />
+          <motion.div
+            initial={false}
+            animate={
+              !open
+                ? {
+                    translateY: [-8, -8, 0],
+                    rotate: [-45, 0, 0],
+                  }
+                : { translateY: [0, -8, -8], rotate: [0, 0, -45] }
+            }
+            transition={{
+              duration: 0.5,
+              ease: "easeOut",
+            }}
+            className="origin-center w-full h-1/5 bg-black dark:bg-white rounded-sm"
+          />
         </div>
       </div>
 
@@ -218,7 +208,7 @@ const SideBar = ({ data, setTheme, colorTheme }) => {
         <motion.div className="justify-center block" variants={navChildVariant}>
           {colorTheme === "light" ? (
             <button
-              className="w-full border-2 px-2 py-2 rounded border-white text-white hover:bg-white hover:text-black text-center"
+              className="w-full border-2 px-2 py-2 rounded border-white text-white hover:bg-white hover:text-black text-center transition-all duration-200"
               onClick={changeThemeHandler}
             >
               {colorTheme.toUpperCase()}
