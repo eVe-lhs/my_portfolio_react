@@ -86,7 +86,7 @@ const ContactForm = () => {
     };
 
     await axios
-      .post("/email", messageObject)
+      .post("https://linhtetswe.herokuapp.com/email", messageObject)
       .then((response) => {
         toast.success(response.data.message, {
           position: toast.POSITION.BOTTOM_RIGHT,
