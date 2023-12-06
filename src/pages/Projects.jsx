@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Pages from "../components/Pages";
 import { motion } from "framer-motion";
 import { useQuery } from "@apollo/client";
-import { getProjects } from "../lib/data";
+import { getProjects, projects } from "../lib/data";
 import Loader from "../components/Loader";
 
 const reveal = {
@@ -90,7 +90,7 @@ const TabMenu = ({ tabs, setTab, value, setValue }) => {
   return (
     <div className="overflow-y-hidden">
       <motion.div
-        className="flex relative md:mx-6 mx-3 md:text-lg text-sm mb-5 flex-row justify-center font-body"
+        className="flex relative mx-3 md:text-lg text-sm mb-5 flex-row justify-left font-body"
         variants={container}
         ref={tabListRef}
       >
@@ -126,56 +126,56 @@ const TabMenu = ({ tabs, setTab, value, setValue }) => {
   );
 };
 
-const projects = [
-  {
-    header: "This is header",
-    tags: ["php", "laravel"],
-    type: "Web Development",
-    imageUrl:
-      "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-  },
-  {
-    header: "This is header",
-    tags: ["php", "laravel"],
-    type: "Others",
-    imageUrl:
-      "https://images.unsplash.com/photo-1606167668584-78701c57f13d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
-  },
-  {
-    header: "This is header",
-    tags: ["php", "laravel"],
-    type: "Programming",
-    imageUrl:
-      "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-  },
-  {
-    header: "This is header",
-    tags: ["php", "laravel"],
-    type: "Programming",
-    imageUrl:
-      "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-  },
-  {
-    header: "This is header",
-    tags: ["php", "laravel"],
-    type: "Web Development",
-    imageUrl:
-      "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
-  },
-  {
-    header: "This is header",
-    tags: ["php", "laravel"],
-    type: "Others",
-    imageUrl:
-      "https://images.unsplash.com/photo-1500995617113-cf789362a3e1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
-  },
-];
+// const projects = [
+//   {
+//     header: "This is header",
+//     tags: ["php", "laravel"],
+//     type: "Web",
+//     imageUrl:
+//       "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+//   },
+//   {
+//     header: "This is header",
+//     tags: ["php", "laravel"],
+//     type: "Others",
+//     imageUrl:
+//       "https://images.unsplash.com/photo-1606167668584-78701c57f13d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
+//   },
+//   {
+//     header: "This is header",
+//     tags: ["php", "laravel"],
+//     type: "Programming",
+//     imageUrl:
+//       "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+//   },
+//   {
+//     header: "This is header",
+//     tags: ["php", "laravel"],
+//     type: "Programming",
+//     imageUrl:
+//       "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+//   },
+//   {
+//     header: "This is header",
+//     tags: ["php", "laravel"],
+//     type: "Web",
+//     imageUrl:
+//       "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
+//   },
+//   {
+//     header: "This is header",
+//     tags: ["php", "laravel"],
+//     type: "Others",
+//     imageUrl:
+//       "https://images.unsplash.com/photo-1500995617113-cf789362a3e1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
+//   },
+// ];
 
 const Items = ({ children, value }) => {
   return (
     <div className="flex overflow-hidden w-full">
       <motion.div
-        className="flex flex-row flex-1 "
+        className="flex flex-row flex-1"
         transition={{
           tension: 190,
           friction: 70,
@@ -197,11 +197,11 @@ const Items = ({ children, value }) => {
   );
 };
 
-const ProjectCard = ({ imageUrl, header, tags, tab, type, githubLink }) => {
+const ProjectCard = ({ imageUrl, header, tags, tab, type, githubLink,projectlink,description }) => {
   const [hovered, setHovered] = useState(false);
   return (
     <motion.div
-      className={`relative bg-black w-full rounded-md overflow-hidden  shadow-lg  opacity-90 font-body ${
+      className={`relative w-full rounded-md overflow-hidden  shadow-lg  font-body ${
         tab === "All" || tab === type ? "block" : "hidden"
       } `}
       onMouseEnter={() => setHovered(true)}
@@ -210,13 +210,13 @@ const ProjectCard = ({ imageUrl, header, tags, tab, type, githubLink }) => {
       initial={false}
     >
       <div
-        className={`absolute w-full h-full z-20 bg-gray-800 flex transition duration-200 ease-in-out ${
-          hovered ? "opacity-90" : "opacity-0"
-        } `}
-      ></div>
+        className={`absolute w-full h-full z-20 ${
+          hovered ? "bg-gray-400/40" : "bg-none"
+        }`}
+      />
       <div className="absolute w-full h-full z-20 flex flex-col justify-center items-center  px-4">
         <h3
-          className={`text-white font-semibold text-xl flex transition duration-200 ease-in-out ${
+          className={`text-white font-semibold text-2xl flex transition duration-200 ease-in-out ${
             hovered
               ? "opacity-100 transform translate-y-0"
               : "opacity-0 transform -translate-y-7"
@@ -224,35 +224,63 @@ const ProjectCard = ({ imageUrl, header, tags, tab, type, githubLink }) => {
         >
           {header}
         </h3>
+        <div
+          className={`mt-5 mb-5 text-white font-light text-base flex transition duration-1000 ease-in-out text-center ${
+            hovered
+              ? "transform scale-100"
+              : "transform scale-0"
+          }`}
+        >
+          {description}
+        </div>
 
         <div
-          className={`mt-4 transform duration-200 ease-in-out ${
+          className={`mt-4 mb-2 transform duration-200 ease-in-out ${
             hovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-7"
           } `}
         >
           {tags.map((tag, index) => (
             <span
-              className={`text-white uppercase text-sm tracking-wide m-2 px-2 py-1`}
+              className={`border-2 rounded-lg text-white uppercase text-sm tracking-wide m-2 px-2 py-1`}
               key={index}
             >
-              {tag.name}
+              {tag}
             </span>
           ))}
         </div>
-        <a
-          className={`rounded-md p-2 bg-black flex text-white gap-2 align-middle mt-3 transform duration-200 ease-in-out hover:scale-110 ${
-            hovered ? "opacity-100 translate-x-0" : "opacity-0 translate-x-7"
-          }`}
-          href={githubLink}
-        >
-          <i className="text-sm fab fa-github"></i>
-          <p className="text-sm font-body">View On Github</p>
-        </a>
+        <div className="">
+          {projectlink && (
+            <a
+              className={`rounded-md p-2 bg-white flex flex-row justify-center text-gray-800 gap-2 justify-items-center items-center mt-3 transform duration-200 ease-in-out hover:scale-105 ${
+                hovered
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 translate-x-7"
+              }`}
+              href={projectlink}
+            >
+              <i class="text-sm fa-solid fa-eye"></i>
+              <p className="text-sm font-body">View Project</p>
+            </a>
+          )}
+          {githubLink && (
+            <a
+              className={`rounded-md p-2 bg-black flex text-white gap-2 align-middle mt-3 justify-items-center items-center transform duration-200 ease-in-out hover:scale-105 ${
+                hovered
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 -translate-x-7"
+              }`}
+              href={githubLink}
+            >
+              <i className="fab fa-github"></i>
+              <p className="text-sm font-body">View On Github</p>
+            </a>
+          )}
+        </div>
       </div>
-      <div className="w-full h-72 relative">
+      <div className="w-full h-72 z-10 relative">
         <img
           className={` h-72 w-full  transform duration-200 ${
-            hovered ? "scale-110" : "scale-100"
+            hovered ? "scale-110 blur-sm" : "scale-100 blur-none"
           } `}
           src={imageUrl}
           alt={header}
@@ -265,15 +293,11 @@ const ProjectCard = ({ imageUrl, header, tags, tab, type, githubLink }) => {
 const ProjectsPage = () => {
   const [value, setValue] = useState(0);
   const [tab, setTab] = useState("All");
-  const tabs = ["All", "WebDevelopment", "Programming", "Others"];
-  const { loading, data } = useQuery(getProjects);
-  if (loading) {
-    return <Loader />;
-  }
-  const Projects =
-    tab === "All"
-      ? data?.projects
-      : data?.projects.filter((project) => project.Type === tab);
+  const tabs = ["All", "Web", "Native Apps", "Others"];
+  // const Projects =
+  //   tab === "All"
+  //     ? data?.projects
+  //     : data?.projects.filter((project) => project.Type === tab);
   return (
     <Pages header="Projects" small="Things that I have done">
       <motion.div variants={reveal}>
@@ -291,15 +315,17 @@ const ProjectsPage = () => {
               className="mx-8 md:grid md:grid-cols-2 flex-col gap-10 space-y-4 md:space-y-0 md:mt-3 "
               variants={container}
             >
-              {Projects.map((project, index) => (
+              {projects.map((project, index) => (
                 <ProjectCard
-                  imageUrl={project.Cover.url}
-                  header={project.Title}
+                  imageUrl={`/assets/${project.image}`}
+                  header={project.title}
+                  description = {project.shortDes}
                   tags={project.tags}
                   index={index}
                   tab={tab}
-                  type={project.Type}
-                  githubLink={project.GitLink}
+                  type={project.type}
+                  githubLink={project.gitlink ? project.gitlink : ""}
+                  projectlink={project.project_link? project.project_link : ""}
                 />
               ))}
             </motion.div>

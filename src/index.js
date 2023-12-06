@@ -3,17 +3,15 @@ import ReactDOM from "react-dom";
 import "./styles/main.css";
 import App from "./App";
 
-import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+// import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 
-const url = "https://lhscms.herokuapp.com/graphql";
-const client = new ApolloClient({
-  uri: url,
-  cache: new InMemoryCache(),
-});
+// const url = "https://lhscms.herokuapp.com/graphql";
+// const client = new ApolloClient({
+//   uri: url,
+//   cache: new InMemoryCache(),
+// });
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
-    <App />
-  </ApolloProvider>,
+    <App />,
   document.getElementById("root")
 );

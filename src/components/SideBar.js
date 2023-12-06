@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Social } from "./Social";
 import { motion } from "framer-motion";
 import { Link } from "react-scroll";
+import { data } from "../lib/data";
 
 const variant = {
   hidden: {
@@ -44,7 +45,7 @@ const LinkDiv = ({ to, children }) => {
   );
 };
 
-const SideBar = ({ data, setTheme, colorTheme }) => {
+const SideBar = ({setTheme, colorTheme }) => {
   const [open, setOpen] = useState(false);
   const toggleSidebar = (e) => {
     e.preventDefault();
@@ -131,7 +132,7 @@ const SideBar = ({ data, setTheme, colorTheme }) => {
           <div className="relative h-32 w-32 rounded-full">
             <img
               alt="lin htet swe"
-              src={data?.profile.profile_image.url}
+              src={data.profile.profile_image}
               className="rounded-full object-fill"
             />
           </div>
@@ -140,7 +141,7 @@ const SideBar = ({ data, setTheme, colorTheme }) => {
               Lin Htet Swe
             </p>
             <p className="text-sm  font-light font-body">
-              A student and web-developer
+              A boy who loves technologies
             </p>
           </div>
         </motion.div>

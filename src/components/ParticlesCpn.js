@@ -7,20 +7,20 @@ const ParticlesCpn = ({ colorTheme }) => {
       params={{
         particles: {
           number: {
-            value: 20,
+            value: 40,
             density: {
-              enable: false,
+              enable: true,
             },
           },
           color: {
             value: `${colorTheme === "dark" ? "#ffffff" : "#000000"}`,
           },
           size: {
-            value: 15,
+            value: 10,
             random: true,
             anim: {
-              speed: 4,
-              size_min: 5,
+              speed: 2,
+              size_min: 2,
             },
           },
           line_linked: {
@@ -28,7 +28,7 @@ const ParticlesCpn = ({ colorTheme }) => {
           },
           move: {
             random: true,
-            speed: 0.5,
+            speed: 0.3,
             direction: "none",
             out_mode: "out",
           },
@@ -41,8 +41,8 @@ const ParticlesCpn = ({ colorTheme }) => {
                     ? "/assets/1-white.png"
                     : "/assets/1_black.png"
                 }`,
-                height: 25,
-                width: 20,
+                height: 15,
+                width: 15,
               },
               {
                 src: `${
@@ -50,8 +50,8 @@ const ParticlesCpn = ({ colorTheme }) => {
                     ? "/assets/0-white.png"
                     : "/assets/0_black.png"
                 }`,
-                height: 25,
-                width: 20,
+                height: 15,
+                width: 15,
               },
             ],
           },
