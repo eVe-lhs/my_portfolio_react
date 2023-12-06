@@ -59,7 +59,7 @@ export const projects = [
     shortDes: "Entertainment Website for teens",
     title: "4 in 1",
     gitlink: "https://github.com/eVe-lhs/4teen",
-    image:"projectCovers/4-teen.png"
+    image: "projectCovers/4-teen.png",
   },
   {
     type: "Others",
@@ -67,7 +67,7 @@ export const projects = [
     shortDes: "Basic AI app using prolog",
     title: "find-ideal-love",
     gitlink: "https://github.com/eVe-lhs/find-ideal-love",
-    image:"projectCovers/idealLove.jpg"
+    image: "projectCovers/idealLove.jpg",
   },
   {
     type: "Web",
@@ -76,7 +76,7 @@ export const projects = [
     title: "My Portfolio",
     gitlink: "https://github.com/eVe-lhs/my_portfolio_react",
     project_link: "https://info.linhtetswe.online",
-    image:"projectCovers/portfolio.png"
+    image: "projectCovers/portfolio.png",
   },
   {
     type: "Web",
@@ -85,7 +85,7 @@ export const projects = [
     shortDes: "A platform to share contents",
     gitlink: "https://github.com/eVe-lhs/blog-frontend",
     project_link: "https://leaflet-uit.netlify.app/home",
-    image:"projectCovers/leaflet.png"
+    image: "projectCovers/leaflet.png",
   },
   {
     type: "Native Apps",
@@ -94,7 +94,7 @@ export const projects = [
       "2-steps campus entrance verification and license detection for Myanmar plates",
     title: "Campus Entrance Security",
     gitlink: "https://github.com/eVe-lhs/campus-entrance-verification-system",
-    image:"projectCovers/cv.png"
+    image: "projectCovers/cv.png",
   },
   {
     type: "Others",
@@ -102,7 +102,7 @@ export const projects = [
     shortDes: "Configuration management using ansible on linux server",
     title: "Automating user and mysql database",
     gitlink: "https://github.com/eVe-lhs/ansible",
-    image:"projectCovers/ansible.png"
+    image: "projectCovers/ansible.png",
   },
   {
     type: "Web",
@@ -110,7 +110,7 @@ export const projects = [
     shortDes: "A platform for tailors and customers",
     title: "At-htal",
     gitlink: "https://github.com/eVe-lhs/at-htal",
-    image:"projectCovers/at-htel.png"
+    image: "projectCovers/at-htel.png",
   },
   {
     type: "Others",
@@ -119,6 +119,14 @@ export const projects = [
     title: "Youtube Analysis",
     project_link:
       "https://colab.research.google.com/drive/1acoKctG-655YB952-Y90bwiSswj_2_3E",
-    image:"projectCovers/python.png"
+    image: "projectCovers/python.png",
+  },
+  {
+    type: "Web",
+    tags: ["Web", "ReactJS", "NodeJS"],
+    title: "Newton International College",
+    shortDes: "The home page for Newton International College Myanmar",
+    project_link: "https://www.nicmm.com/",
+    image: "projectCovers/nic.png",
   },
 ];

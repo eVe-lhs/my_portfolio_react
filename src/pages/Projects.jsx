@@ -225,7 +225,7 @@ const ProjectCard = ({ imageUrl, header, tags, tab, type, githubLink,projectlink
           {header}
         </h3>
         <div
-          className={`mt-5 mb-5 text-white font-light text-base flex transition duration-1000 ease-in-out text-center ${
+          className={`mt-5 mb-5 text-white font-light text-base flex transition duration-200 ease-in-out text-center ${
             hovered
               ? "transform scale-100"
               : "transform scale-0"
