@@ -214,9 +214,9 @@ const ProjectCard = ({ imageUrl, header, tags, tab, type, githubLink,projectlink
           hovered ? "bg-gray-400/40" : "bg-none"
         }`}
       />
-      <div className="absolute w-full h-full z-20 flex flex-col justify-center items-center  px-4">
+      <div className="absolute w-full h-full z-20 flex flex-col justify-center items-center px-4">
         <h3
-          className={`text-white font-semibold text-2xl flex transition duration-200 ease-in-out ${
+          className={`text-white text-center font-semibold md:text-2xl text-base flex transition duration-200 ease-in-out ${
             hovered
               ? "opacity-100 transform translate-y-0"
               : "opacity-0 transform -translate-y-7"
@@ -225,46 +225,44 @@ const ProjectCard = ({ imageUrl, header, tags, tab, type, githubLink,projectlink
           {header}
         </h3>
         <div
-          className={`mt-5 mb-5 text-white font-light text-base flex transition duration-200 ease-in-out text-center ${
-            hovered
-              ? "transform scale-100"
-              : "transform scale-0"
+          className={`md:mt-5 md:mb-5 text-white font-light md:text-base text-sm flex transition duration-200 ease-in-out text-center ${
+            hovered ? "transform scale-100" : "transform scale-0"
           }`}
         >
           {description}
         </div>
 
         <div
-          className={`mt-4 mb-2 transform duration-200 ease-in-out ${
+          className={`md:mt-4 mt-2 md:mb-2 transform duration-200 ease-in-out flex flex-wrap justify-center ${
             hovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-7"
           } `}
         >
           {tags.map((tag, index) => (
             <span
-              className={`border-2 rounded-lg text-white uppercase text-sm tracking-wide m-2 px-2 py-1`}
+              className={`border rounded-lg text-white uppercase md:text-sm text-xs md:tracking-wide md:m-2 m-1 px-2 py-1`}
               key={index}
             >
               {tag}
             </span>
           ))}
         </div>
-        <div className="">
+        <div className="flex md:flex-col flex-row gap-1">
           {projectlink && (
             <a
-              className={`rounded-md p-2 bg-white flex flex-row justify-center text-gray-800 gap-2 justify-items-center items-center mt-3 transform duration-200 ease-in-out hover:scale-105 ${
+              className={`rounded-md md:p-2 p-1 bg-white flex flex-row justify-center text-gray-800 gap-2 justify-items-center items-center mt-3 transform duration-200 ease-in-out hover:scale-105 ${
                 hovered
                   ? "opacity-100 translate-x-0"
                   : "opacity-0 translate-x-7"
               }`}
               href={projectlink}
             >
-              <i class="text-sm fa-solid fa-eye"></i>
-              <p className="text-sm font-body">View Project</p>
+              <i class="md:text-sm text-xs fa-solid fa-eye"></i>
+              <p className="md:text-sm text-xs font-body">View Project</p>
             </a>
           )}
           {githubLink && (
             <a
-              className={`rounded-md p-2 bg-black flex text-white gap-2 align-middle mt-3 justify-items-center items-center transform duration-200 ease-in-out hover:scale-105 ${
+              className={`rounded-md md:p-2 p-1 bg-black flex text-white gap-2 align-middle mt-3 justify-items-center items-center transform duration-200 ease-in-out hover:scale-105 ${
                 hovered
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 -translate-x-7"
@@ -272,14 +270,14 @@ const ProjectCard = ({ imageUrl, header, tags, tab, type, githubLink,projectlink
               href={githubLink}
             >
               <i className="fab fa-github"></i>
-              <p className="text-sm font-body">View On Github</p>
+              <p className="md:text-sm font-body text-xs">View On Github</p>
             </a>
           )}
         </div>
       </div>
-      <div className="w-full h-72 z-10 relative">
+      <div className="w-full md:h-72 z-10 relative">
         <img
-          className={` h-72 w-full  transform duration-200 ${
+          className={` md:h-72 h-52 w-full  transform duration-200 ${
             hovered ? "scale-110 blur-sm" : "scale-100 blur-none"
           } `}
           src={imageUrl}

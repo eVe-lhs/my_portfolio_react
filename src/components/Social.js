@@ -16,7 +16,7 @@ export const Social = ({ socialLinks }) => {
     <>
       <div className="px-6 py-4">
         <div className="flex items-center justify-center space-x-3">
-          <motion.a href="#" variants={socialVariant}>
+          <motion.a href={socialLinks.facebook} variants={socialVariant}>
             <button className="bg-blue-500  px-2 py-2 font-semibold text-white  inline-flex items-center space-x-2 rounded-full hover:opacity-50">
               <svg
                 width="24"
@@ -32,25 +32,12 @@ export const Social = ({ socialLinks }) => {
               </svg>
             </button>
           </motion.a>
-          <motion.a href={socialLinks?.Twitter} variants={socialVariant}>
-            <button className="bg-blue-300  px-2 py-2 font-semibold text-white  inline-flex items-center space-x-2 rounded-full hover:opacity-50">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M8 3C9.10457 3 10 3.89543 10 5V8H16C17.1046 8 18 8.89543 18 10C18 11.1046 17.1046 12 16 12H10V14C10 15.6569 11.3431 17 13 17H16C17.1046 17 18 17.8954 18 19C18 20.1046 17.1046 21 16 21H13C9.13401 21 6 17.866 6 14V5C6 3.89543 6.89543 3 8 3Z"
-                  fill="currentColor"
-                />
-              </svg>
+          <motion.a href={socialLinks.linkedIn} variants={socialVariant}>
+            <button className="px-2 py-2 font-semibold text-white  inline-flex items-center space-x-2 rounded-full hover:opacity-50">
+              <img alt="linked-in" className="rounded-full object-contain w-24 h-24" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/LinkedIn_icon.svg/2048px-LinkedIn_icon.svg.png"/>
             </button>
           </motion.a>
-          <motion.a href={socialLinks?.Instagram} variants={socialVariant}>
+          <motion.a href={socialLinks?.instagram} variants={socialVariant}>
             <button className="bg-red-500  px-2 py-2 font-semibold text-white  inline-flex items-center space-x-2 rounded-full hover:opacity-50">
               <svg
                 width="24"
@@ -78,7 +65,7 @@ export const Social = ({ socialLinks }) => {
               </svg>
             </button>
           </motion.a>
-          <motion.a href={socialLinks?.GitHub} variants={socialVariant}>
+          <motion.a href={socialLinks?.github} variants={socialVariant}>
             <button className="bg-black  px-2 py-2 font-semibold text-white  inline-flex items-center space-x-2 rounded-full hover:opacity-50">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

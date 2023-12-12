@@ -223,7 +223,7 @@ const SideBar = ({setTheme, colorTheme }) => {
             </button>
           )}
         </motion.div>
-        <Social socialLinks={data?.social} />
+        <Social socialLinks={data.social_media} />
         <small className="text-center font-thin">
           Copyright &copy;2021 Lin Htet Swe. All Rights reserved
         </small>

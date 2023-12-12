@@ -48,7 +48,10 @@ export const data = {
   },
 
   social_media: {
-    facebook: "www.facebook.com",
+    facebook: "https://www.facebook.com/linhtetswe",
+    linkedIn: "https://www.linkedin.com/in/lin-htet-swe",
+    github: "https://github.com/eVe-lhs/",
+    instagram: "https://www.instagram.com/eve.swe/",
   },
 };
 

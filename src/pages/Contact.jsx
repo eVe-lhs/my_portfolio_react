@@ -60,8 +60,8 @@ const ContactInfo = ({ icon, text }) => {
       className="flex flex-row shadow-lg mt-8 md:mt-0 rounded-md"
       variants={revealLeft}
     >
-      <div className="w-28 h-28 flex items-center bg-gray-200 dark:bg-gray-800 rounded-tl-md rounded-bl-md">
-        <div className="text-3xl mx-auto">
+      <div className="md:w-28 md:h-28 w-16 h-16 flex items-center bg-gray-200 dark:bg-gray-800 rounded-tl-md rounded-bl-md">
+        <div className="md:text-3xl text-2xl mx-auto">
           <i className={`${icon} text-black dark:text-gray-100 font-thin`}></i>
         </div>
       </div>
@@ -158,17 +158,17 @@ const ContactInfo = ({ icon, text }) => {
 const Contact = () => {
   return (
     <Pages small="Get In Touch" header="Contact">
-      <motion.div
-        className="mx-6"
-        variants={reveal}
-      >
+      <motion.div className="mx-6" variants={reveal}>
         <motion.div
           className="flex md:flex-row flex-col justify-between gap-3 md:space-x-3 md:space-y-0 space-y-4"
           variants={container}
         >
           <ContactInfo icon="fas fa-envelope" text="linhtetswe2012@gmail.com" />
-          <ContactInfo icon="fas fa-phone" text="+959-785294393"/>
-          <ContactInfo icon="fa-solid fa-graduation-cap" text="University Of Information Technology" />
+          <ContactInfo icon="fas fa-phone" text="+959-785294393" />
+          <ContactInfo
+            icon="fa-solid fa-location-dot"
+            text="Yangon, Myanmar"
+          />
         </motion.div>
         {/* <motion.div
           className="flex-1 md:mx-6 md:mt-0 mt-6 font-subhead"
