@@ -96,7 +96,7 @@ const TabMenu = ({ tabs, setTab, value, setValue }) => {
       >
         {tabs.map((tab, index) => (
           <motion.div
-            className={`cursor-pointer px-5 overflow-hidden pb-3`}
+            className={`cursor-pointer px-6 overflow-hidden pb-3 `}
             onClick={() => {
               setTab(tab);
               setValue(index);
@@ -203,6 +203,8 @@ const ProjectCard = ({ imageUrl, header, tags, tab, type, githubLink,projectlink
     <motion.div
       className={`relative w-full rounded-md overflow-hidden  shadow-lg  font-body ${
         tab === "All" || tab === type ? "block" : "hidden"
+      } ${
+        hovered ? "border-dashed border-2 dark:border-white border-black" : ""
       } `}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -211,12 +213,12 @@ const ProjectCard = ({ imageUrl, header, tags, tab, type, githubLink,projectlink
     >
       <div
         className={`absolute w-full h-full z-20 ${
-          hovered ? "bg-gray-400/40" : "bg-none"
+          hovered ? "bg-gray-500/40" : "bg-none"
         }`}
       />
-      <div className="absolute w-full h-full z-20 flex flex-col justify-center items-center px-4">
+      <div className="absolute w-full h-full z-20 flex flex-col justify-center items-center px-4 ">
         <h3
-          className={`text-white text-center font-semibold md:text-2xl text-base flex transition duration-200 ease-in-out ${
+          className={`text-white text-center font-semibold drop-shadow-lg md:text-2xl text-base flex transition duration-200 ease-in-out ${
             hovered
               ? "opacity-100 transform translate-y-0"
               : "opacity-0 transform -translate-y-7"
@@ -225,7 +227,7 @@ const ProjectCard = ({ imageUrl, header, tags, tab, type, githubLink,projectlink
           {header}
         </h3>
         <div
-          className={`md:mt-5 md:mb-5 text-white font-light md:text-base text-sm flex transition duration-200 ease-in-out text-center ${
+          className={`md:mt-5 md:mb-5 text-white font-light md:text-base text-sm drop-shadow-lg flex transition duration-200 ease-in-out text-center ${
             hovered ? "transform scale-100" : "transform scale-0"
           }`}
         >
@@ -239,20 +241,20 @@ const ProjectCard = ({ imageUrl, header, tags, tab, type, githubLink,projectlink
         >
           {tags.map((tag, index) => (
             <span
-              className={`border rounded-lg text-white uppercase md:text-sm text-xs md:tracking-wide md:m-2 m-1 px-2 py-1`}
+              className={`border rounded-md text-white uppercase md:text-sm text-xs drop-shadow-lg md:tracking-wide md:m-2 m-1 px-2 py-1`}
               key={index}
             >
               {tag}
             </span>
           ))}
         </div>
-        <div className="flex md:flex-col flex-row gap-1">
+        <div className="flex md:flex-col flex-row gap-2">
           {projectlink && (
             <a
               className={`rounded-md md:p-2 p-1 bg-white flex flex-row justify-center text-gray-800 gap-2 justify-items-center items-center mt-3 transform duration-200 ease-in-out hover:scale-105 ${
                 hovered
                   ? "opacity-100 translate-x-0"
-                  : "opacity-0 translate-x-7"
+                  : "opacity-0 -translate-x-7"
               }`}
               href={projectlink}
             >
@@ -265,7 +267,7 @@ const ProjectCard = ({ imageUrl, header, tags, tab, type, githubLink,projectlink
               className={`rounded-md md:p-2 p-1 bg-black flex text-white gap-2 align-middle mt-3 justify-items-center items-center transform duration-200 ease-in-out hover:scale-105 ${
                 hovered
                   ? "opacity-100 translate-y-0"
-                  : "opacity-0 -translate-x-7"
+                  : "opacity-0 translate-x-7"
               }`}
               href={githubLink}
             >
@@ -275,9 +277,9 @@ const ProjectCard = ({ imageUrl, header, tags, tab, type, githubLink,projectlink
           )}
         </div>
       </div>
-      <div className="w-full md:h-72 z-10 relative">
+      <div className="w-full md:h-72 h-56 z-10 relative">
         <img
-          className={` md:h-72 h-52 w-full  transform duration-200 ${
+          className={` md:h-72 h-56 w-full  transform duration-200 ${
             hovered ? "scale-110 blur-sm" : "scale-100 blur-none"
           } `}
           src={imageUrl}
