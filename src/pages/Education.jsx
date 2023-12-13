@@ -136,7 +136,7 @@ const Education = ({ profileData }) => {
                 date="2017"
                 description={[
                   "I graduated from high-school education by scoring ",
-                  <strong>530 out of 600</strong>,
+                  <strong>530 </strong>,
                   "marks in matriculation examination.",
                 ]}
               />
@@ -152,7 +152,7 @@ const Education = ({ profileData }) => {
                     {" "}
                     University Of Information Technology, Yangon
                   </strong>,
-                  " for Beachlor Degree. I emphasized in Computer Science Major and currently in Third Year of my undergraduate program.",
+                  " for Bachelor Degree. I majored in Software Engineering Computer Science and currently in Final Year of my undergraduate program.",
                 ]}
               />
             </div>
